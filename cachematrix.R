@@ -6,12 +6,12 @@
 ## lists the output. 
 
 makeCacheMatrix <- function(x = matrix()) {
-        inv <- NULL
+        inv <- NULL                ##initializes inverse as NULL
         set <- function(y) {
                 x <<- y
                 inv <<- NULL
         }
-        get <- function() {x}
+        get <- function() {x}       ##function to get inverse of matrix
         setInverse <- function(inverse) {inv <<- inverse}
         getInverse <- function() {inv}
         list(set = set, get = get, 
@@ -22,13 +22,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Function 2. 
 
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x, ...) {   ##gets cache data
        inv <- x$getInverse()
-       if(!is.null(inv)) {
+       if(!is.null(inv)) {         ##Tests for is inverse NULL?
                message("getting cached data")
-               return(inv)
+               return(inv)         ##returns value of inverse
        }
        mat <- x$get()
-       inv <- solve(mat, ...)
+       inv <- solve(mat, ...)      ##calculates inverse value
        x$setInverse(inv)
 }
